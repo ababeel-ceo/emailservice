@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Sending Form</title>
+    <!-- Include the EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      // Initialize EmailJS with your USER ID
+      emailjs.init("1qV0eVf-3HNGRq8Sc");
+
+      // Function to send email
+      function sendEmail() {
+        // Get form values
+        var userEmail = document.getElementById("userEmail").value;
+        var message = document.getElementById("message").value;
+
+        //         "template_params": {
+        //     "from_name": "naaaan",
+        //     "to_name": "neeeee",
+        //     "message": "halla mathi habiboo halla mathi habi vanthaleee",
+        //     "reply_to": "sds"
+        //   }
+
+        // Prepare email parameters
+        // emailjs.send("service_mk0izr9", "template_hv3ddbd", {
+        //   from_name: "klasdksajd",
+        //   to_name: "asdasdsa",
+        //   message: "asdsadsad",
+        //   reply_to: "asdsadsadsa",
+        // });
+        // var params = {
+        //   to_email: "smsapk42@gmail.com", // Replace with your recipient email
+        //   from_name: userEmail,
+        //   message_html: message,
+        // };
+
+        var params = {
+          from_name: userEmail,
+          to_name: "it's me",
+          message: message,
+          reply_to: "",
+        };
+
+        // Send email
+        emailjs.send("service_mk0izr9", "template_hv3ddbd", params).then(
+          function (response) {
+            alert("Email sent successfully!");
+            console.log("Email sent:", response);
+          },
+          function (error) {
+            alert("Error sending email. Please try again later.");
+            console.error("Error sending email:", error);
+          }
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Send Email</h2>
+    <form>
+      <label for="userEmail">Your Email:</label><br />
+      <input
+        type="email"
+        id="userEmail"
+        name="userEmail"
+        required
+      /><br /><br />
+
+      <label for="message">Message:</label><br />
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        cols="50"
+        required
+      ></textarea
+      ><br /><br />
+
+      <button type="button" onclick="sendEmail()">Send Email</button>
+    </form>
+  </body>
+</html>
